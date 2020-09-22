@@ -1,0 +1,16 @@
+﻿@page "/weather"
+
+@inject IHttpClientFactory _clientFactory
+
+<h3>WeatherData</h3>
+
+@code { 
+    
+    protected override async Task OnInitializedAsync()
+    {
+        var request = new HttpRequestMessage(HttpMethod.Get,
+            "https://www.metaweather.com/api/location/2442047/");
+        var client = _clientFactory.CreateClient();
+        HttpResponseMessage response = await client.SendAsync(request);
+    }
+}
